@@ -1,8 +1,8 @@
-- alias: hasura
+- alias: test
   config:
     configmap: controller-conf
     namespace: hasura
   data: null
-  kubeContext: h34-excel57-stg
-  name: h34-excel57-stg
+  kubeContext: h34-ablation65-stg
+  name: h34-ablation65-stg
   services: null
