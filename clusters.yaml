@@ -1,11 +1,3 @@
-- alias: test
-  config:
-    configmap: controller-conf
-    namespace: hasura
-  data: null
-  kubeContext: h34-ablation65-stg
-  name: h34-ablation65-stg
-  services: null
 - alias: hasura
   config:
     configmap: controller-conf
