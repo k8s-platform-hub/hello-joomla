@@ -1,4 +1,5 @@
-description: Blank template for a Hasura project
-keywords: base, getting-started
-name: base
+name: hello-python-flask
+description: A basic sample project for python-flask
+keywords: base, getting-started, python, flask
 platformVersion: v0.15.3
+

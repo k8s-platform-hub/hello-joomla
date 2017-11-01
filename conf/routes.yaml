@@ -50,3 +50,13 @@ notify:
     upstreamServicePath: /
     upstreamServicePort: 80
     corsPolicy: allow_all
+app:
+  /:
+    enableAuth: true
+    enableCORS: true
+    enableWebsockets: true
+    upstreamService:
+      name: app
+      namespace: '{{ cluster.metadata.namespaces.user }}'
+    upstreamServicePath: /
+    upstreamServicePort: 80
