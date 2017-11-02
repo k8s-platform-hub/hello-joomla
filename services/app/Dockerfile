@@ -1,7 +1,5 @@
-FROM microsoft/dotnet:1.1-sdk-msbuild
-RUN mkdir /src
-WORKDIR /src
-ADD app/src/ /src
-RUN dotnet restore
-RUN dotnet build
-CMD dotnet run
+FROM golang:1.7.5-wheezy
+COPY ./app/src/ /home/root/
+RUN go build -a /home/root/Server.go && \
+    chmod +x Server
+CMD /go/Server
