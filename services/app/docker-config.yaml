@@ -1,4 +1,4 @@
-image: "go-server:<tag>"
-port: 8080
-volume_mounts: null
-env_variables: []
+image: "joomla:latest"
+port: 80
+volume_mounts: "/var/www/html"
+env_variables: ["JOOMLA_DB_HOST","JOOMLA_DB_USER","JOOMLA_DB_PASSWORD","JOOMLA_DB_NAME"]

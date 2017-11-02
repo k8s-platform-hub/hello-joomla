@@ -1,8 +1,8 @@
-# hello-golang-app
+# hello-joomla
 
-This project consists of a basic hasura project with a simple Go web app running on it. Once this app is deployed on a Hasura cluster, you will have the app running at [https://app.cluster-name.hasura-app.io](https://app.cluster-name.hasura-app.io).
+This project consists of a basic hasura project with a simple joomla CMS running on it. Once this app is deployed on a Hasura cluster, you will have the app running at [https://app.cluster-name.hasura-app.io](https://app.cluster-name.hasura-app.io).
 
-This is the right place to start if you are planning to build or want to learn to build an Go-lang  app with hasura.
+This is the right place to start if you are planning to build or want to learn to build a joomla CMS with hasura.
 
 ## Sections
 
@@ -12,7 +12,7 @@ This is the right place to start if you are planning to build or want to learn t
 * [Auth API](#auth-apis)
 * [Filestore API](#filestore-apis)
 * [Custom service](#custom-service)
-* [Migrate from an existing Go-lang app](#migrate-from-an-existing-project)
+* [Migrate from an existing joomla project](#migrate-from-an-existing-project)
 * [Local development](#local-development)
 * [FAQ](#faq)
 
@@ -29,14 +29,14 @@ Follow this section to get this project working. Before you begin, ensure you ha
 ### Step 1: Getting the project
 
 ```sh
-$ hasura quickstart hello-golang-raw
-$ cd hello-golang-raw
+$ hasura quickstart hello-joomla
+$ cd hello-joomla
 ```
 
 The above command does the following:
-1. Creates a new folder in the current working directory called `hello-golang-raw`
+1. Creates a new folder in the current working directory called `hello-joomla`
 2. Creates a new free hasura cluster for you and sets that cluster as the default cluster for this project
-3. Initializes `hello-golang-raw` as a git repository and adds the necessary git remotes.
+3. Initializes `hello-joomla` as a git repository and adds the necessary git remotes.
 
 ### Step 2: Getting cluster information
 
@@ -146,13 +146,13 @@ You can try out these in the `API EXPLORER` tab of the `api console`. To learn m
 
 There might be cases where you might want to perform some custom business logic on your apis. For example, sending an email/sms to a user on sign up or sending a push notification to the mobile device when some event happens. For this, you would want to create your own custom service which does these for you on the endpoints that you define.
 
-This quickstart comes with one such custom service written in Golang. Check it out in action at `https://app.cluster-name.hasura-app.io` . Currently, it just returns a JSON response of "Hello World" at that endpoint.
+This quickstart comes with one such custom Joomla content management service. Check it out in action at `https://app.cluster-name.hasura-app.io` . Currently, it just returns a JSON response of "Hello World" at that endpoint.
 
 In case you want to use another language/framework for your custom service. Take a look at our docs to see how you can add a new custom service.
 
 ## Migrate from an existing project
 
-If you have an existing ASP.NET app and would like to migrate it to Hasura:
+If you have an existing Joomla service and would like to migrate it to Hasura:
 
 - Replace the `services/app/app` directory with your app directory.
 - Ensure that the structure of the directory is coherent with the current structure.
@@ -171,8 +171,8 @@ Follow these steps to test out your app locally
 
 ```sh
 $ cd services/app/
-$ docker build -t go-raw:<tag> .
-$ docker run -d -p 8080:8080 go-raw:<tag>
+$ docker build -t joomla:<tag> .
+$ docker run -d -p 8080:8080 joomla:<tag>
 ```
 Your app will be running on port 8080.
 
