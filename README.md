@@ -1,8 +1,8 @@
-# hello-python-flask
+# hello-csharp-aspnet
 
-This project consists of a basic hasura project with a simple flask app running on it. Once this app is deployed on a Hasura cluster, you will have the flask app running at [https://app.cluster-name.hasura-app.io](https://app.cluster-name.hasura-app.io).
+This project consists of a basic hasura project with a simple ASP.NET(C#) app running on it. Once this app is deployed on a Hasura cluster, you will have the app running at [https://app.cluster-name.hasura-app.io](https://app.cluster-name.hasura-app.io).
 
-This is the right place to start if you are planning to build or want to learn to build a flask app with hasura.
+This is the right place to start if you are planning to build or want to learn to build an ASP.NET  app with hasura.
 
 ## Sections
 
@@ -12,7 +12,7 @@ This is the right place to start if you are planning to build or want to learn t
 * [Auth API](#auth-apis)
 * [Filestore API](#filestore-apis)
 * [Custom service](#custom-service)
-* [Migrate from an existing flask app](#migrate-from-an-existing-flask-app)
+* [Migrate from an existing ASP.NET app](#migrate-from-an-existing-project)
 * [Local development](#local-development)
 * [FAQ](#faq)
 
@@ -21,7 +21,7 @@ This is the right place to start if you are planning to build or want to learn t
 This quickstart project comes with the following by default:
 1. A basic hasura project
 2. Two tables `article` and `author` with some dummy data
-3. A basic flask app which runs at the `app` subdomain which fetches a list of articles available at the 'get_articles' endpoint
+3. A basic ASP.NET app which runs at the `app` subdomain which fetches a list of articles available at the 'get_articles' endpoint
 
 ## Quickstart
 
@@ -30,14 +30,14 @@ Follow this section to get this project working. Before you begin, ensure you ha
 ### Step 1: Getting the project
 
 ```sh
-$ hasura quickstart hello-python-flask
-$ cd hello-python-flask
+$ hasura quickstart hello-csharp-aspnet
+$ cd hello-csharp-aspnet
 ```
 
 The above command does the following:
-1. Creates a new folder in the current working directory called `hello-python-flask`
+1. Creates a new folder in the current working directory called `hello-csharp-aspnet`
 2. Creates a new free hasura cluster for you and sets that cluster as the default cluster for this project
-3. Initializes `hello-python-flask` as a git repository and adds the necessary git remotes.
+3. Initializes `hello-csharp-aspnet` as a git repository and adds the necessary git remotes.
 
 ### Step 2: Getting cluster information
 
@@ -69,8 +69,9 @@ $ git add .
 $ git commit -m "Initial Commit"
 $ git push hasura master
 ```
+When you push for the first time, it might take sometime. Next time onwards, it is really fast.
 
-Once the above commands are executed successfully, head over to `https://app.cluster-name.hasura-app.io` (in this case `https://app.h34-excise98-stg.hasura-app.io`) to view your flask app.
+Once the above commands are executed successfully, head over to `https://app.cluster-name.hasura-app.io` (in this case `https://app.h34-excise98-stg.hasura-app.io`) to view your app.
 
 ### Api console
 
@@ -110,8 +111,6 @@ Alternatively, you can also view the schema for these tables on the api console 
 
 This means that you can now leverage the hasura data queries to perform CRUD operations on these tables.
 
-The flask app uses these data apis to show the respective data, to see it in action check out `https://app.cluster-name.hasura-app.io/get_articles` (replace cluster-name with your cluster name) and check out `hasuraExamples.py` at `services/app/app/src/hasuraExamples.js` to see how the calls are being made. You can also check out all the apis provided by Hasura from the api console by heading over to the `API EXPLORER` tab.
-
 For eg, to fetch a list of all articles from the article table, you have to send the following JSON request to the data api endpoint -> `https://data.cluster-name.hasura-app.io/v1/query` (replace `cluster-name` with your cluster name)
 
 ```json
@@ -148,32 +147,16 @@ You can try out these in the `API EXPLORER` tab of the `api console`. To learn m
 
 There might be cases where you might want to perform some custom business logic on your apis. For example, sending an email/sms to a user on sign up or sending a push notification to the mobile device when some event happens. For this, you would want to create your own custom service which does these for you on the endpoints that you define.
 
-This quickstart comes with one such custom service written in `python` using the `flask` framework. Check it out in action at `https://app.cluster-name.hasura-app.io` . Currently, it just returns a JSON response of "Hello World" at that endpoint.
+This quickstart comes with one such custom service written in C# using the ASP.NET framework. Check it out in action at `https://app.cluster-name.hasura-app.io` . Currently, it just returns a JSON response of "Hello World" at that endpoint.
 
 In case you want to use another language/framework for your custom service. Take a look at our docs to see how you can add a new custom service.
 
-## Migrate from an existing flask app
+## Migrate from an existing project
 
-If you have an existing flask and would like to migrate it to Hasura:
+If you have an existing ASP.NET app and would like to migrate it to Hasura:
 
 - Replace the `services/app/app` directory with your app directory.
-- Ensure that the structure of the ui directory is
-
-```
-app
-├── conf
-│   └── gunicorn_config.py
-└── src
-    ├── config.py
-    ├── hasuraExamples.py
-    ├── __init__.py
-    ├── requirements.txt
-    └── server.py
-```
-
-
-
-- `cd path-to-hello-python-flask`
+- Ensure that the structure of the directory is coherent with the current structure.
 - `git add . && git commit -m "Migration Commit"`
 - `git push hasura master`
 
@@ -183,16 +166,16 @@ Now your existing app should be running on `https://app.cluster-name.hasura-app.
 
 Everytime you push, your code will get deployed on a public URL. However, for faster iteration you should locally test your changes.
 
-### Testing your flask app locally
+### Testing your app locally
 
-Since we are directly accessing the internal data endpoint (Read more about internal and external endpoints here) in the nodejs-express app. We need to forward our requests to the port at which the data service is running.
+Follow these steps to test out your app locally
 
 ```sh
-$ hasura forward -s data -n hasura --local-port 6432 --remote-port 8080
-$ cd services/app/app
-$ pip install -r requirements.txt
-$ FLASK_APP=__init__.py flask run
+$ cd services/app/
+$ docker build -t csharp-aspnet .
+$ docker run -d -p 8080:8080 csharp-aspnet
 ```
+Your app will be running on port 8080.
 
 ## Files and Directories
 
@@ -220,10 +203,8 @@ The project (a.k.a. project directory) has a particular directory structure and 
 │   ├── 1504788327_create_table_user.up.yaml
 │   └── 1504788327_create_table_user.up.sql
 └── services
-    ├── adminer
-    │   └── k8s.yaml
-    └── flask
-        ├── src/
+    └── app
+        ├── app/
         ├── k8s.yaml
         └── Dockerfile
 ```

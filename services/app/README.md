@@ -1,40 +1,45 @@
-# Quickstart - git based pipeline
+csharp-aspnet
+-------------
 
-Follow the steps mentioned below for git based pipeline
+# Introduction
 
-1. Ensure that you have a git project
-2. Edit `app/src/server.py`
-3. Commit your changes
+ASP.NET Core is a cross-platform, high-performance, open-source framework for building modern, cloud-based, Internet-connected applications. This is a quickstart template for ASP.NET Core application using C#.
 
-    ```bash
-    $ git add .
-    $ git commit -m "message"
-    ```
+The source code have been generated using [Yo Generator ASP.NET](https://github.com/OmniSharp/generator-aspnet).
 
-4. Push the changes to git
+You can read more about ASP.NET Core on [Microsoft Docs](https://docs.microsoft.com/en-us/aspnet/core/).
 
-    ```bash
-    $ git push <remote> master
-    ```
+# Quickstart
 
-# Local development
+## Docker build
 
-Here, <cluster-name> is the name of your cluster. (Not the alias)
-( You can get the cluster name from the `hasura cluster status` command )
+Build the docker image using the follwing command:
+
 ```bash
-$ cd app/src
-$ pip install -r requirements.txt
-$ FLASK_APP=__init__.py CLUSTER_NAME=<cluster_name> flask run
-```
-# Advanced usage
-
-### **Port**
-
-Default Port for application is `8080` .
-
-Application port can be changed by modifying the variable `bind` in  `app/conf/gunicorn_config.py` or setting Environment Variable
-
-```python
-bind = "0.0.0.0:" + os.environ.get("APP_PORT", "<NEW_PORT>")
+$ docker build -t csharp-aspnet .
 ```
 
+## Docker run
+
+After building the image, you can run the docker image locally by executing
+
+```bash
+$ docker run -d -p 8080:8080 csharp-aspnet
+```
+
+NOTE: The server runs on port `8080` by default
+
+## Git based workflow
+
+- Modify the source code under `app/src`
+- Git add and commit your changes
+- Add hasura git remote
+- Push your code to hasura
+
+```bash
+$ git push hasura master
+```
+
+# Contributing
+
+Static files are also included in the git repo (which is not a good practice). Any help is welcome in cleaning this up and setting up a proper .NET workflow.
